@@ -42,6 +42,7 @@ const servicePrices = {
         { name: "Event Kecil", desc: "Pengerjaan Event Kecil / Misi Harian.", price: "Rp10.000" },
         // LAYANAN BARU: QUEST LUNA
         { name: "Quest Luna", desc: "Pengerjaan Quest Luna .", price: "Rp20.000" }, 
+        { name: "Quest Aranyaka", desc: "Di hitung setiap centang Di buku.", price: "Rp20.000" },
     ],
     // -------------------------------------------------------------
     // 5. FARMING MATERIAL - Ikon AETHER
