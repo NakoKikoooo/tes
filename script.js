@@ -6,9 +6,9 @@ const servicePrices = {
     // 1. SPYRALL - Ikon AMBER
     // -------------------------------------------------------------
     spyrall: [
-        { name: "Spyrall Abyss (Full Star)", desc: "Penyelesaian penuh Spyrall Abyss (tergantung gear akun).", price: "FREE" },
-        { name: "Stygiant Onslaught", desc: "Penyelesaian penuh tantangan Stygiant Onslaught.", price: "FREE" },
-        { name: "Imaginarium Theater", desc: "Penyelesaian penuh event Imaginarium Theater.", price: "FREE" }
+        { name: "Spyrall Abyss ", desc: "Tergantung Spek Akun.", price: "Gratis" },
+        { name: "Stygiant Onslaught", desc: "Tergantung Spek Akun.", price: "Gratis" },
+        { name: "Imaginarium Theater", desc: "Tergantung Spek Akun.", price: "Gratis" }
     ],
     // -------------------------------------------------------------
     // 2. EKSPLORASI MAP - Ikon GANYU (Harga Per Wilayah)
