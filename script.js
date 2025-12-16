@@ -25,6 +25,7 @@ const servicePrices = {
         { name: "Explore Map: Enkanomiya", desc: "Eksplorasi Map wilayah Enkanomiya (Full Chest/Seelie).", price: "Rp20.000" },
 { name: "Explore Map: The Chasm:Undergroud Mines", desc: "Eksplorasi Map wilayah The Chasm:Undergroud Mines (Full Chest/Seelie).", price: "Rp25.000" },
 { name: "Explore Map: Ancient Sacred Mountain", desc: "Eksplorasi Map wilayah Ancient Sacred Mountain (Full Chest/Seelie).", price: "Rp25.000" },
+{ name: "Mencari biji kematian", desc: "Mencari 76 Aranara.", price: "Rp25.000" },
 
         { name: "Open Teleport", desc: "Membuka semua titik Teleport di Map.", price: "Rp500" }
     ],
