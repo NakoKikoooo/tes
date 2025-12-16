@@ -6,9 +6,9 @@ const servicePrices = {
     // 1. SPYRALL - Ikon AMBER
     // -------------------------------------------------------------
     spyrall: [
-        { name: "Spyrall Abyss ", desc: "Tergantung Spek Akun.", price: "Gratis" },
-        { name: "Stygiant Onslaught", desc: "Tergantung Spek Akun.", price: "Gratis" },
-        { name: "Imaginarium Theater", desc: "Tergantung Spek Akun.", price: "Gratis" }
+        { name: "Spyrall Abyss ", desc: "Penyelesaian Tergantung Spek Akun.", price: "Gratis" },
+        { name: "Stygiant Onslaught", desc: "Penyelesaian Tergantung Spek Akun.", price: "Gratis" },
+        { name: "Imaginarium Theater", desc: "Penyelesaian Tergantung Spek Akun.", price: "Gratis" }
     ],
     // -------------------------------------------------------------
     // 2. EKSPLORASI MAP - Ikon GANYU (Harga Per Wilayah)
