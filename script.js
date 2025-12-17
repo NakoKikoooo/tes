@@ -1,201 +1,371 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KIKO JOKI GENSHIN | Tingkatkan Akun Anda</title>
-    <link rel="stylesheet" href="styles.css"> 
-    <style>
-        /* CSS untuk mendukung fitur klik harga */
-        .antrean-section {
-            background: #fff;
-            padding: 30px;
-            border-radius: 15px;
-            text-align: center;
-            margin: 20px 0;
-            border: 2px solid #7289da;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-        }
-        .nomor-box { font-size: 4.5rem; font-weight: bold; color: #e74c3c; margin: 15px 0; line-height: 1; }
-        .btn-antri {
-            background-color: #25d366; color: white; border: none; padding: 15px 30px;
-            font-size: 1.2rem; border-radius: 10px; cursor: pointer; font-weight: bold; width: 100%; max-width: 320px;
-        }
-        .btn-antri:disabled { background-color: #bdc3c7 !important; cursor: not-allowed; }
+ // script.js
+
+
+// DATA HARGA LAYANAN (Disesuaikan dengan Pricelist KIKO JOKI GENSHIN)
+
+const servicePrices = {
+
+    // -------------------------------------------------------------
+
+    // 1. SPYRALL - Ikon AMBER
+
+    // -------------------------------------------------------------
+
+    spyrall: [
+
+        { name: "Spyrall Abyss ", desc: "Penyelesaian Tergantung Spek Akun.", price: "Gratis" },
+
+        { name: "Stygiant Onslaught", desc: "Penyelesaian Tergantung Spek Akun.", price: "Gratis" },
+
+        { name: "Imaginarium Theater", desc: "Penyelesaian Tergantung Spek Akun.", price: "Gratis" }
+
+    ],
+
+    // -------------------------------------------------------------
+
+    // 2. EKSPLORASI MAP - Ikon GANYU (Harga Per Wilayah)
+
+    // -------------------------------------------------------------
+
+    eksplorasi: [
+
+        { name: "Explore Map: Mondstad", desc: "Eksplorasi Map wilayah Mondstad (Full Chest/Seelie).", price: "Rp8.000" },
+
+        { name: "Explore Map: Dragonspine", desc: "Eksplorasi Map wilayah Dragonspine (Full Chest/Seelie).", price: "Rp15.000" },
+
+        { name: "Explore Map: Liyue", desc: "Eksplorasi Map wilayah Liyue (Full Chest/Seelie).", price: "Rp20.000" },
+
+        { name: "Explore Map: Inazuma", desc: "Eksplorasi Map wilayah Inazuma (Full Chest/Seelie).", price: "Rp20.000" },
+
+        { name: "Explore Map: Sumeru", desc: "Eksplorasi Map wilayah Sumeru (Full Chest/Seelie).", price: "Rp35.000" },
+
+        { name: "Explore Map: Fontaine", desc: "Eksplorasi Map wilayah Fontaine (Full Chest/Seelie).", price: "Rp25.000" },
+
+        { name: "Explore Map: Natlan", desc: "Eksplorasi Map wilayah Natlan (Full Chest/Seelie).", price: "Rp20.000" },
+
+        { name: "Explore Map: Nodkrai", desc: "Eksplorasi Map wilayah Nodkrai (Full Chest/Seelie).", price: "Rp15.000" },
+
+        { name: "Explore Map: Enkanomiya", desc: "Eksplorasi Map wilayah Enkanomiya (Full Chest/Seelie).", price: "Rp20.000" },
+
+{ name: "Explore Map: The Chasm:Undergroud Mines", desc: "Eksplorasi Map wilayah The Chasm:Undergroud Mines (Full Chest/Seelie).", price: "Rp25.000" },
+
+{ name: "Explore Map: Ancient Sacred Mountain", desc: "Eksplorasi Map wilayah Ancient Sacred Mountain (Full Chest/Seelie).", price: "Rp25.000" },
+
+{ name: "Mencari biji kematian", desc: "Mencari 76 Aranara.", price: "Rp25.000" },
+
+
+        { name: "Open Teleport", desc: "Membuka semua titik Teleport di Map.", price: "Rp500" }
+
+    ],
+
+    // -------------------------------------------------------------
+
+    // 3. DAILY COMMISION HARIAN - Ikon XIAO
+
+    // -------------------------------------------------------------
+
+    daily: [
+
+        { name: "Rawat Akun (1 Bulan)", desc: "Perawatan akun penuh selama 1 bulan.", price: "Rp20.000" },
+
+        { name: "Rawat Akun (1 Minggu)", desc: "Perawatan akun penuh selama 1 minggu.", price: "Rp10.000" },
+
+        { name: "Rawat Akun (1 Hari)", desc: "Perawatan akun penuh selama 1 hari.", price: "Rp2.000" }
+
+    ],
+
+    // -------------------------------------------------------------
+
+    // 4. JOKI QUEST - Ikon HU TAO (Quest Luna Ditambahkan di Sini)
+
+    // -------------------------------------------------------------
+
+    jokiquest: [
+
+        { name: "Archon Quest", desc: "Penyelesaian Archon Quest.", price: "Rp10.000" },
+
+        { name: "World Quest", desc: "Penyelesaian World Quest.", price: "Rp8.000" },
+
+        { name: "Event Besar", desc: "Pengerjaan Event Besar / Misi Utama.", price: "Rp25.000" },
+
+        { name: "Event Kecil", desc: "Pengerjaan Event Kecil / Misi Harian.", price: "Rp10.000" },
+
+        // LAYANAN BARU: QUEST LUNA
+
+        { name: "Quest Luna", desc: "Pengerjaan Quest Luna .", price: "Rp20.000" }, 
+
+        { name: "Quest Aranyaka", desc: "Per Jurnal petualangan hutan.", price: "Rp20.000" },
+
+         { name: "Kisah kesukuan", desc: "Quest Suku Mata Air.", price: "Rp20.000" },
+
+{ name: "Kisah kesukuan", desc: "Quest Suku Tirai daun.", price: "Rp20.000" },
+
+{ name: "Kisah kesukuan", desc: "Quest Suku Putra-Putri Gema.", price: "Rp25.000" },
+
+{ name: "Kisah kesukuan", desc: "Quest Suku Bunga Bersayap.", price: "Rp25.000" },
+
+{ name: "Kisah kesukuan", desc: "Quest Suku Penguasa Angin Malam.", price: "Rp25.000" },
+
+{ name: "Kisah kesukuan", desc: " Quest Suku Berlimpah Jaya.", price: "Rp25.000" },
+
+    ],
+
+    // -------------------------------------------------------------
+
+    // 5. FARMING MATERIAL - Ikon AETHER
+
+    // -------------------------------------------------------------
+
+    farming: [
+
+        { name: "Material Ascending (50pcs)", desc: "Farming material ascending hingga 50 buah.", price: "Rp2.000" },
+
+        { name: "Bebatuan (50pcs)", desc: "Farming Bebatuan (ore) hingga 50 buah.", price: "Rp2.000" },
+
+        { name: "Weapon Mancing / Refine", desc: "Farming untuk senjata pancing atau refine.", price: "Rp2.000 / refine" }
+
+    ],
+
+};
+
+
+const form = document.getElementById('joki-form');
+
+const inputWaDiv = document.getElementById('input-wa');
+
+const inputDiscordDiv = document.getElementById('input-discord');
+
+const inputWa = document.getElementById('whatsapp');
+
+const inputDiscord = document.getElementById('discord');
+
+const radioButtons = document.querySelectorAll('input[name="metode_kontak"]');
+
+
+const serviceItems = document.querySelectorAll('.service-item'); 
+
+const allHargaKontainer = document.querySelectorAll('.harga-layanan-detail');
+
+
+
+// ==========================================================
+
+// 1. FUNGSI UNTUK MENAMPILKAN/MENYEMBUNYIKAN INPUT KONTAK
+
+// ==========================================================
+
+radioButtons.forEach(radio => {
+
+    radio.addEventListener('change', function() {
+
+        inputWaDiv.style.display = 'none';
+
+        inputDiscordDiv.style.display = 'none';
+
         
-        /* Gaya Tabel Harga yang akan muncul */
-        .harga-layanan-detail {
-            display: none; /* Tersembunyi secara default */
-            margin-top: 15px;
-            background: #f9f9f9;
-            padding: 15px;
-            border-radius: 10px;
-            border: 1px solid #ddd;
+
+        inputWa.value = '';
+
+        inputDiscord.value = '';
+
+        inputWa.removeAttribute('required');
+
+        inputDiscord.removeAttribute('required');
+
+
+        if (this.value === 'whatsapp') {
+
+            inputWaDiv.style.display = 'block';
+
+            inputWa.setAttribute('required', 'required');
+
+        } else if (this.value === 'discord') {
+
+            inputDiscordDiv.style.display = 'block';
+
+            inputDiscord.setAttribute('required', 'required');
+
         }
-        .harga-table-detail { width: 100%; border-collapse: collapse; margin-top: 10px; }
-        .harga-table-detail th, .harga-table-detail td {
-            border: 1px solid #ddd; padding: 10px; text-align: left; font-size: 0.9rem;
-        }
-        .harga-table-detail th { background-color: #7289da; color: white; }
+
+    });
+
+});
+
+
+// ==========================================================
+
+// 2. FUNGSI UNTUK MENAMPILKAN HARGA SAAT LAYANAN DIKLIK
+
+// ==========================================================
+
+serviceItems.forEach(item => {
+
+    item.addEventListener('click', function() {
+
+        const serviceId = this.getAttribute('data-service-id');
+
+        const prices = servicePrices[serviceId];
+
+        const targetHargaKontainer = document.getElementById(`harga-${serviceId}`);
+
+        const targetHargaBody = targetHargaKontainer ? targetHargaKontainer.querySelector('.harga-body-detail') : null;
+
         
-        .service-item { cursor: pointer; transition: transform 0.2s; }
-        .service-item:hover { transform: scale(1.02); }
-        .highlighted { border: 2px solid #25d366; border-radius: 10px; }
-        .gratis-text { color: #e74c3c; font-weight: bold; }
-    </style>
-</head>
-<body>
-    
-    <header>
-        <div class="container">
-            <div class="brand-name">KIKO JOKI GENSHIN</div>
-            <nav>
-                <ul>
-                    <li><a href="#layanan-harga">Layanan & Harga</a></li> 
-                    <li><a href="#antrean">Cek Antrian</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
 
-    <div class="container"> 
-        <section id="antrean" class="antrean-section">
-            <h2>Sistem Antrian Joki <span class="gratis-text">Gratis</span></h2>
-            <p id="labelStatus">Nomor Antrian Terakhir Saat Ini:</p>
-            <div class="nomor-box" id="displayAntrean">--</div>
-            <button class="btn-antri" id="btnAmbil" onclick="ambilAntrean()">AMBIL NOMOR ANTRIAN</button>
-            <p id="infoAntrean" style="margin-top:15px; font-weight:bold; color:#2c3e50;"></p>
-            <p id="infoWaktu" style="font-size: 0.85rem; color: #7f8c8d;"></p>
-        </section>
+        // 1. Toggle Tampilan: Sembunyikan semua kecuali yang diklik
 
-        <section id="layanan-harga">
-            <h2>Layanan Kami (Klik Ikon untuk Lihat Harga)</h2>
-            
-            <div class="service-list">
-                <div class="service-item-wrapper">
-                    <div class="service-item" data-service-id="spyrall">
-                        <img src="amber-icon.png" alt="Ikon Amber" class="service-icon">
-                        <div>
-                            <h3>Joki Spyrall Abyss, Stygiant Onslaught, Imaginarium Theater</h3>
-                            <p>Penyelesaian Full Star atau sesuai permintaan.</p>
-                        </div>
-                    </div>
-                    <div class="harga-layanan-detail" id="harga-spyrall">
-                        <table class="harga-table-detail">
-                            <thead><tr><th>Layanan</th><th>Deskripsi</th><th>Harga</th></tr></thead>
-                            <tbody class="harga-body-detail"></tbody>
-                        </table>
-                    </div>
-                </div>
+        allHargaKontainer.forEach(kontainer => {
 
-                <div class="service-item-wrapper">
-                    <div class="service-item" data-service-id="eksplorasi">
-                        <img src="ganyu-icon.png" alt="Ikon Ganyu" class="service-icon">
-                        <div>
-                            <h3>Joki Eksplorasi Map</h3>
-                            <p>Eksplorasi wilayah Mondstad hingga Natlan.</p>
-                        </div>
-                    </div>
-                    <div class="harga-layanan-detail" id="harga-eksplorasi">
-                        <table class="harga-table-detail">
-                            <thead><tr><th>Layanan</th><th>Deskripsi</th><th>Harga</th></tr></thead>
-                            <tbody class="harga-body-detail"></tbody>
-                        </table>
-                    </div>
-                </div>
+            if (kontainer.id === `harga-${serviceId}`) {
 
-                <div class="service-item-wrapper">
-                    <div class="service-item" data-service-id="daily">
-                        <img src="xiao-icon.png" alt="Ikon Xiao" class="service-icon">
-                        <div>
-                            <h3>Joki Daily Commision Harian</h3>
-                            <p>Rawat akun harian, mingguan, atau bulanan.</p>
-                        </div>
-                    </div>
-                    <div class="harga-layanan-detail" id="harga-daily">
-                        <table class="harga-table-detail">
-                            <thead><tr><th>Layanan</th><th>Deskripsi</th><th>Harga</th></tr></thead>
-                            <tbody class="harga-body-detail"></tbody>
-                        </table>
-                    </div>
-                </div>
+                // Toggle display: Jika sudah tampil, sembunyikan; jika tersembunyi, tampilkan
 
-                <div class="service-item-wrapper">
-                    <div class="service-item" data-service-id="jokiquest">
-                        <img src="hutao-icon.png" alt="Ikon Hu Tao" class="service-icon">
-                        <div>
-                            <h3>Joki Quest (Story/Event)</h3>
-                            <p>Archon Quest, World Quest, dan Event Terbatas.</p>
-                        </div>
-                    </div>
-                    <div class="harga-layanan-detail" id="harga-jokiquest">
-                        <table class="harga-table-detail">
-                            <thead><tr><th>Layanan</th><th>Deskripsi</th><th>Harga</th></tr></thead>
-                            <tbody class="harga-body-detail"></tbody>
-                        </table>
-                    </div>
-                </div>
+                kontainer.style.display = (kontainer.style.display === 'block' ? 'none' : 'block');
 
-                <div class="service-item-wrapper">
-                    <div class="service-item" data-service-id="farming">
-                        <img src="aether-icon.png" alt="Ikon Aether" class="service-icon">
-                        <div>
-                            <h3>Joki Farming Material</h3>
-                            <p>Farming material karakter, bebatuan, dan memancing.</p>
-                        </div>
-                    </div>
-                    <div class="harga-layanan-detail" id="harga-farming">
-                        <table class="harga-table-detail">
-                            <thead><tr><th>Layanan</th><th>Deskripsi</th><th>Harga</th></tr></thead>
-                            <tbody class="harga-body-detail"></tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-            
-            <section id="kontak" style="margin-top: 50px; background: #f0f2f5; padding: 20px; border-radius: 15px;">
-                <h3>Form Pemesanan</h3>
-                <form id="joki-form">
-                    <input type="text" id="nama" placeholder="Nama Lengkap" required style="width: 90%; padding: 10px; margin-bottom: 10px;">
-                    <div style="margin-bottom: 10px;">
-                        <label><input type="radio" name="metode_kontak" value="whatsapp" checked> WhatsApp</label>
-                        <label><input type="radio" name="metode_kontak" value="discord"> Discord</label>
-                    </div>
-                    <div id="input-wa"><input type="text" id="whatsapp" placeholder="Nomor WhatsApp" style="width: 90%; padding: 10px; margin-bottom: 10px;"></div>
-                    <div id="input-discord" style="display:none;"><input type="text" id="discord" placeholder="Username Discord" style="width: 90%; padding: 10px; margin-bottom: 10px;"></div>
-                    
-                    <select id="server" style="width: 95%; padding: 10px; margin-bottom: 10px;">
-                        <option value="Asia">Asia</option>
-                        <option value="America">America</option>
-                        <option value="Europe">Europe</option>
-                    </select>
-                    <input type="text" id="layanan-jasa" placeholder="Layanan yang dipilih" required style="width: 90%; padding: 10px; margin-bottom: 10px;">
-                    <textarea id="catatan" placeholder="Catatan tambahan (Spek akun, dll)" style="width: 90%; padding: 10px; margin-bottom: 10px;"></textarea>
-                    <button type="submit" class="btn-antri" style="background: #7289da;">KIRIM PESANAN</button>
-                </form>
-            </section>
-        </section> 
-    </div>
+            } else {
 
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
-    <script src="script.js"></script>
+                // Sembunyikan yang lain
 
-    <script>
-        // Logika Antrean (Firebase)
-        const firebaseConfig = { databaseURL: "https://kiko-joki-default-rtdb.asia-southeast1.firebasedatabase.app" };
-        firebase.initializeApp(firebaseConfig);
-        const db = firebase.database();
+                kontainer.style.display = 'none';
 
-        function ambilAntrean() {
-            if (localStorage.getItem('kikoMyNumber')) return alert("Anda sudah punya nomor!");
-            db.ref('lastNumber').transaction(c => (c || 0) + 1, (err, comm, snap) => {
-                if (comm) {
-                    localStorage.setItem('kikoMyNumber', snap.val());
-                    location.reload();
-                }
+            }
+
+        });
+
+
+        // 2. Isi data harga ke tabel yang diklik
+
+        if (prices && targetHargaBody) {
+
+            targetHargaBody.innerHTML = ''; // Kosongkan tabel body lama
+
+            prices.forEach(p => {
+
+                const row = targetHargaBody.insertRow();
+
+                row.insertCell().textContent = p.name;
+
+                row.insertCell().textContent = p.desc;
+
+                row.insertCell().textContent = p.price;
+
             });
+
         }
-    </script>
-</body>
-</html>
+
+        
+
+        // 3. Highlight Item yang Diklik (opsional)
+
+        serviceItems.forEach(i => i.classList.remove('highlighted'));
+
+        // Hanya tambahkan highlight jika tabel harga ditampilkan
+
+        if (targetHargaKontainer && targetHargaKontainer.style.display === 'block') {
+
+            this.classList.add('highlighted');
+
+        }
+
+    });
+
+});
+
+
+
+// ==========================================================
+
+// 3. FUNGSI UNTUK MENGIRIM DATA KE SERVER
+
+// ==========================================================
+
+form.addEventListener('submit', function(event) {
+
+    event.preventDefault(); 
+
+
+    const nama = document.getElementById('nama').value;
+
+    const whatsapp = inputWaDiv.style.display === 'block' ? inputWa.value : '';
+
+    const discord = inputDiscordDiv.style.display === 'block' ? inputDiscord.value : '';
+
+    
+
+    const server = document.getElementById('server').value; 
+
+    const layanan = document.getElementById('layanan-jasa').value;
+
+    const catatan = document.getElementById('catatan').value;
+
+
+    const orderData = {
+
+        nama: nama,
+
+        whatsapp: whatsapp, 
+
+        discord: discord,   
+
+        server: server,
+
+        layanan: layanan,
+
+        catatan: catatan
+
+    };
+
+
+    fetch('http://localhost:3000/api/orders', {
+
+        method: 'POST', 
+
+        headers: {
+
+            'Content-Type': 'application/json',
+
+        },
+
+        body: JSON.stringify(orderData)
+
+    })
+
+    .then(response => {
+
+        if (!response.ok) {
+
+            return response.json().then(error => { throw new Error(error.error || 'Terjadi kesalahan saat mengirim pesanan.'); });
+
+        }
+
+        return response.json(); 
+
+    })
+
+    .then(data => {
+
+        alert(`SUKSES! Pesanan ID: ${data.order.id} berhasil dikirim ke server!`);
+
+        form.reset(); 
+
+        
+
+        inputWaDiv.style.display = 'none';
+
+        inputDiscordDiv.style.display = 'none';
+
+        serviceItems.forEach(i => i.classList.remove('highlighted'));
+
+        allHargaKontainer.forEach(kontainer => kontainer.style.display = 'none');
+
+    })
+
+    .catch(error => {
+
+        alert(`Gagal mengirim pesanan: ${error.message}`);
+
+        console.error('Error:', error);
+
+    });
+
+});
