@@ -5,260 +5,213 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>KIKO JOKI GENSHIN | Layanan Terlengkap & Terpercaya</title>
     <style>
-        /* --- CORE CSS: AGAR TIDAK ANEH DI HP --- */
-        * { box-sizing: border-box; margin: 0; padding: 0; }
+        /* --- SMOOTH EFFECTS --- */
+        html { scroll-behavior: smooth; }
+        * { box-sizing: border-box; margin: 0; padding: 0; transition: all 0.3s ease; }
         
         body { 
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; 
-            line-height: 1.6; 
+            font-family: 'Segoe UI', Roboto, sans-serif; 
             background-color: #f4f7f9; 
             color: #333;
-            overflow-x: hidden; /* Mencegah layar goyang kanan-kiri */
+            overflow-x: hidden;
+            opacity: 0; animation: fadeIn 0.8s ease-in forwards;
         }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
         .container { width: 100%; max-width: 800px; margin: 0 auto; padding: 0 15px; }
 
-        /* HEADER & HERO */
-        header { background: #fff; padding: 15px 0; box-shadow: 0 2px 10px rgba(0,0,0,0.1); text-align: center; }
+        header { background: #fff; padding: 15px 0; box-shadow: 0 2px 10px rgba(0,0,0,0.1); text-align: center; position: sticky; top: 0; z-index: 100; }
         .brand-name { font-weight: bold; font-size: 1.4rem; color: #3498db; }
         
         .hero-banner {
             background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('header-bg.jpg') center/cover no-repeat;
-            padding: 60px 20px;
+            padding: 50px 20px;
             color: white;
             text-align: center;
             border-bottom: 4px solid #3498db;
         }
-        .hero-banner h1 { font-size: 2rem; margin-bottom: 10px; }
 
-        /* LIST LAYANAN */
         .service-item { 
-            background: #fff; 
-            margin: 15px 0; 
-            padding: 15px; 
-            border-radius: 12px; 
-            border: 1px solid #ddd;
-            display: flex;
-            align-items: center;
-            cursor: pointer;
-            transition: 0.3s;
+            background: #fff; margin: 15px 0; padding: 15px; border-radius: 12px; 
+            border: 1px solid #ddd; display: flex; align-items: center; cursor: pointer;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        .service-item:hover { 
+            transform: translateY(-5px); 
+            box-shadow: 0 8px 15px rgba(52, 152, 219, 0.2);
+            border-color: #3498db;
         }
         .service-icon { width: 55px; height: 55px; border-radius: 50%; margin-right: 15px; flex-shrink: 0; }
-        .service-item h3 { font-size: 1.1rem; color: #2c3e50; margin-bottom: 4px; }
-        .service-item p { font-size: 0.85rem; color: #666; line-height: 1.3; }
-
-        /* TABEL HARGA: FIX TERPOTONG DI HP */
+        
         .harga-layanan-detail {
-            display: none;
-            background: #fff;
-            padding: 10px;
-            border-radius: 10px;
-            margin-bottom: 20px;
-            border: 1px solid #3498db;
+            display: none; background: #fff; padding: 10px;
+            border-radius: 10px; margin-bottom: 20px; border: 1px solid #3498db;
+            animation: slideDown 0.4s ease-out;
         }
+        @keyframes slideDown { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
         
         table { width: 100%; border-collapse: collapse; }
-        th { background: #3498db; color: white; text-align: left; padding: 10px; font-size: 0.85rem; }
-        td { padding: 10px; border-bottom: 1px solid #eee; font-size: 0.85rem; vertical-align: top; }
+        th { background: #3498db; color: white; text-align: left; padding: 12px; font-size: 0.85rem; }
+        td { padding: 12px; border-bottom: 1px solid #eee; font-size: 0.85rem; vertical-align: top; }
 
-        /* CSS KHUSUS HP: MENGUBAH TABEL MENJADI LIST AGAR TIDAK TERPOTONG */
         @media screen and (max-width: 600px) {
             table, thead, tbody, th, td, tr { display: block; }
             thead tr { position: absolute; top: -9999px; left: -9999px; }
             tr { border-bottom: 2px solid #3498db; margin-bottom: 10px; padding-bottom: 5px; }
-            td { 
-                border: none; position: relative; padding-left: 35%; 
-                text-align: right; min-height: 30px;
-            }
-            td:before { 
-                position: absolute; left: 10px; width: 30%; 
-                white-space: nowrap; font-weight: bold; text-align: left; color: #3498db;
-            }
-            /* Label Kolom Asli */
+            td { border: none; position: relative; padding-left: 40%; text-align: right; min-height: 35px; }
+            td:before { position: absolute; left: 10px; width: 35%; font-weight: bold; text-align: left; color: #3498db; }
             td:nth-of-type(1):before { content: "Layanan"; }
             td:nth-of-type(2):before { content: "Deskripsi"; }
             td:nth-of-type(3):before { content: "Harga"; }
         }
 
-        /* FORM */
         #kontak-form-section { background: #fff; padding: 25px; border-radius: 15px; margin: 30px 0; border: 1px solid #ddd; }
         .form-group { margin-bottom: 15px; }
         label { display: block; font-weight: bold; margin-bottom: 5px; font-size: 0.9rem; }
         input, textarea { width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 8px; font-size: 1rem; }
-        .btn-order { background: #25d366; color: white; border: none; padding: 15px; border-radius: 10px; font-weight: bold; width: 100%; cursor: pointer; font-size: 1.1rem; }
-
-        @media (min-width: 768px) {
-            .hero-banner h1 { font-size: 3.5rem; }
-        }
+        .btn-order { background: #25d366; color: white; border: none; padding: 16px; border-radius: 10px; font-weight: bold; width: 100%; cursor: pointer; }
     </style>
 </head>
 <body>
 
-    <header><div class="brand-name">KIKO JOKI GENSHIN</div></header>
+<header><div class="brand-name">KIKO JOKI GENSHIN</div></header>
 
-    <div class="hero-banner">
-        <div class="container">
-            <h1>KIKO JOKI GENSHIN</h1>
-            <p>Jasa Joki Terpercaya • Cepat • Amanah</p>
-        </div>
-    </div>
-
+<div class="hero-banner">
     <div class="container">
-        <h2 style="text-align:center; margin: 30px 0 10px;">Daftar Layanan Joki</h2>
+        <h1>KIKO JOKI GENSHIN</h1>
+        <p>Jasa Joki Terpercaya • Cepat • Amanah</p>
+    </div>
+</div>
 
-        <div id="layanan-list">
-            <div class="service-item" onclick="toggle('spyrall')">
-                <img src="amber-icon.png" class="service-icon">
-                <div>
-                    <h3>Joki Spyrall Abyss, Stygiant Onslaught, IT</h3>
-                    <p>Penyelesaian Full Star sesuai spek akun Anda.</p>
-                </div>
-            </div>
-            <div id="spyrall" class="harga-layanan-detail">
-                <table>
-                    <thead><tr><th>Layanan</th><th>Deskripsi</th><th>Harga</th></tr></thead>
-                    <tbody id="b-spyrall"></tbody>
-                </table>
-            </div>
+<div class="container">
+    <h2 style="text-align:center; margin: 30px 0 10px;">Daftar Layanan Joki</h2>
 
-            <div class="service-item" onclick="toggle('eksplorasi')">
-                <img src="ganyu-icon.png" class="service-icon">
-                <div>
-                    <h3>Joki Eksplorasi Map</h3>
-                    <p>Eksplorasi wilayah mendetail hingga 100% (Chest/Seelie/Oculus).</p>
-                </div>
-            </div>
-            <div id="eksplorasi" class="harga-layanan-detail">
-                <table>
-                    <thead><tr><th>Layanan</th><th>Deskripsi</th><th>Harga</th></tr></thead>
-                    <tbody id="b-eksplorasi"></tbody>
-                </table>
-            </div>
-
-            <div class="service-item" onclick="toggle('daily')">
-                <img src="xiao-icon.png" class="service-icon">
-                <div>
-                    <h3>Joki Daily Commision Harian</h3>
-                    <p>Rawat akun rutin mulai dari harian hingga bulanan.</p>
-                </div>
-            </div>
-            <div id="daily" class="harga-layanan-detail">
-                <table>
-                    <thead><tr><th>Layanan</th><th>Deskripsi</th><th>Harga</th></tr></thead>
-                    <tbody id="b-daily"></tbody>
-                </table>
-            </div>
-
-            <div class="service-item" onclick="toggle('jokiquest')">
-                <img src="hutao-icon.png" class="service-icon">
-                <div>
-                    <h3>Joki Quest (Story/Event/Luna)</h3>
-                    <p>Archon, World Quest, Luna, dan Kisah Kesukuan Natlan.</p>
-                </div>
-            </div>
-            <div id="jokiquest" class="harga-layanan-detail">
-                <table>
-                    <thead><tr><th>Layanan</th><th>Deskripsi</th><th>Harga</th></tr></thead>
-                    <tbody id="b-jokiquest"></tbody>
-                </table>
-            </div>
-
-            <div class="service-item" onclick="toggle('farming')">
-                <img src="aether-icon.png" class="service-icon">
-                <div>
-                    <h3>Joki Farming Material</h3>
-                    <p>Farming material ascension, ore bebatuan, dan senjata pancing.</p>
-                </div>
-            </div>
-            <div id="farming" class="harga-layanan-detail">
-                <table>
-                    <thead><tr><th>Layanan</th><th>Deskripsi</th><th>Harga</th></tr></thead>
-                    <tbody id="b-farming"></tbody>
-                </table>
+    <div id="layanan-list">
+        <div class="service-item" onclick="toggle('spyrall')">
+            <img src="amber-icon.png" class="service-icon">
+            <div>
+                <h3>Joki Spyrall Abyss, Stygiant Onslaught, IT</h3>
+                <p>Penyelesaian Full Star sesuai spek akun Anda.</p>
             </div>
         </div>
+        <div id="spyrall" class="harga-layanan-detail">
+            <table>
+                <thead><tr><th>Layanan</th><th>Deskripsi</th><th>Harga</th></tr></thead>
+                <tbody id="b-spyrall"></tbody>
+            </table>
+        </div>
 
-        <section id="kontak-form-section">
-            <h2 style="text-align: center; margin-bottom: 20px;">ISI DI BAWAH INI JIKA KAMU MAU JOKI</h2>
-            <form id="joki-form">
-                <div class="form-group"><label>Nama</label><input type="text" id="nama" placeholder="Nama Anda" required></div>
-                <div class="form-group"><label>Layanan yang dipilih</label><input type="text" id="layanan-jasa" placeholder="Contoh: Explore Natlan + Quest Luna" required></div>
-                <div class="form-group"><label>Catatan Tambahan</label><textarea id="catatan" rows="3" placeholder="Tuliskan detail pesanan..."></textarea></div>
-                <button type="submit" class="btn-order">KIRIM KE WHATSAPP SEKARANG</button>
-            </form>
-        </section>
+        <div class="service-item" onclick="toggle('eksplorasi')">
+            <img src="ganyu-icon.png" class="service-icon">
+            <div>
+                <h3>Joki Eksplorasi Map</h3>
+                <p>Eksplorasi wilayah mendetail hingga 100% (Chest/Seelie/Oculus).</p>
+            </div>
+        </div>
+        <div id="eksplorasi" class="harga-layanan-detail">
+            <table>
+                <thead><tr><th>Layanan</th><th>Deskripsi</th><th>Harga</th></tr></thead>
+                <tbody id="b-eksplorasi"></tbody>
+            </table>
+        </div>
+
+        <div class="service-item" onclick="toggle('daily')">
+            <img src="xiao-icon.png" class="service-icon">
+            <div><h3>Joki Daily Commision Harian</h3><p>Rawat akun rutin mulai dari harian hingga bulanan.</p></div>
+        </div>
+        <div id="daily" class="harga-layanan-detail"><table><thead><tr><th>Layanan</th><th>Deskripsi</th><th>Harga</th></tr></thead><tbody id="b-daily"></tbody></table></div>
+
+        <div class="service-item" onclick="toggle('jokiquest')">
+            <img src="hutao-icon.png" class="service-icon">
+            <div><h3>Joki Quest (Story/Event/Luna)</h3><p>Archon, World Quest, Luna, dan Kisah Kesukuan Natlan.</p></div>
+        </div>
+        <div id="jokiquest" class="harga-layanan-detail"><table><thead><tr><th>Layanan</th><th>Deskripsi</th><th>Harga</th></tr></thead><tbody id="b-jokiquest"></tbody></table></div>
+
+        <div class="service-item" onclick="toggle('farming')">
+            <img src="aether-icon.png" class="service-icon">
+            <div><h3>Joki Farming Material</h3><p>Farming material ascension, ore bebatuan, dan senjata pancing.</p></div>
+        </div>
+        <div id="farming" class="harga-layanan-detail"><table><thead><tr><th>Layanan</th><th>Deskripsi</th><th>Harga</th></tr></thead><tbody id="b-farming"></tbody></table></div>
     </div>
 
-    <script>
-        const servicePrices = {
-            spyrall: [
-                { name: "Spyrall Abyss", desc: "Penyelesaian Tergantung Spek Akun.", price: "Gratis" },
-                { name: "Stygiant Onslaught", desc: "Penyelesaian Tergantung Spek Akun.", price: "Gratis" },
-                { name: "Imaginarium Theater", desc: "Penyelesaian Tergantung Spek Akun.", price: "Gratis" }
-            ],
-            eksplorasi: [
-                { name: "Explore Map: Mondstad", desc: "Eksplorasi Map (Full Chest/Seelie).", price: "Rp8.000" },
-                { name: "Explore Map: Dragonspine", desc: "Eksplorasi Map (Full Chest/Seelie).", price: "Rp15.000" },
-                { name: "Explore Map: Liyue", desc: "Eksplorasi Map (Full Chest/Seelie).", price: "Rp20.000" },
-                { name: "Explore Map: Inazuma", desc: "Eksplorasi Map (Full Chest/Seelie).", price: "Rp20.000" },
-                { name: "Explore Map: Sumeru", desc: "Eksplorasi Map (Full Chest/Seelie).", price: "Rp35.000" },
-                { name: "Explore Map: Fontaine", desc: "Eksplorasi Map (Full Chest/Seelie).", price: "Rp25.000" },
-                { name: "Explore Map: Natlan", desc: "Eksplorasi Map (Full Chest/Seelie).", price: "Rp20.000" },
-                { name: "Explore Map: Nodkrai", desc: "Eksplorasi Map (Full Chest/Seelie).", price: "Rp15.000" },
-                { name: "Explore Map: Enkanomiya", desc: "Eksplorasi Map (Full Chest/Seelie).", price: "Rp20.000" },
-                { name: "Explore Map: The Chasm Underground Mines", desc: "Eksplorasi Map (Full Chest/Seelie).", price: "Rp25.000" },
-                { name: "Explore Map: Ancient Sacred Mountain", desc: "Eksplorasi Map (Full Chest/Seelie).", price: "Rp25.000" },
-                { name: "Mencari biji kematian", desc: "Mencari 76 Aranara.", price: "Rp25.000" },
-                { name: "Open Teleport", desc: "Membuka semua titik Teleport di Map.", price: "Rp500" }
-            ],
-            daily: [
-                { name: "Rawat Akun (1 Bulan)", desc: "Perawatan akun penuh selama 1 bulan.", price: "Rp20.000" },
-                { name: "Rawat Akun (1 Minggu)", desc: "Perawatan akun penuh selama 1 minggu.", price: "Rp10.000" },
-                { name: "Rawat Akun (1 Hari)", desc: "Perawatan akun penuh selama 1 hari.", price: "Rp2.000" }
-            ],
-            jokiquest: [
-                { name: "Archon Quest", desc: "Penyelesaian Archon Quest.", price: "Rp10.000" },
-                { name: "World Quest", desc: "Penyelesaian World Quest.", price: "Rp8.000" },
-                { name: "Event Besar", desc: "Pengerjaan Event Besar / Misi Utama.", price: "Rp25.000" },
-                { name: "Event Kecil", desc: "Pengerjaan Event Kecil / Misi Harian.", price: "Rp10.000" },
-                { name: "Quest Luna", desc: "Pengerjaan Quest Luna.", price: "Rp20.000" }, 
-                { name: "Quest Aranyaka", desc: "Per Jurnal petualangan hutan.", price: "Rp20.000" },
-                { name: "Kisah kesukuan", desc: "Quest Suku Mata Air.", price: "Rp20.000" },
-                { name: "Kisah kesukuan", desc: "Quest Suku Tirai daun.", price: "Rp20.000" },
-                { name: "Kisah kesukuan", desc: "Quest Suku Putra-Putri Gema.", price: "Rp25.000" },
-                { name: "Kisah kesukuan", desc: "Quest Suku Bunga Bersayap.", price: "Rp25.000" },
-                { name: "Kisah kesukuan", desc: "Quest Suku Penguasa Angin Malam.", price: "Rp25.000" },
-                { name: "Kisah kesukuan", desc: "Quest Suku Berlimpah Jaya.", price: "Rp25.000" }
-            ],
-            farming: [
-                { name: "Material Ascending (50pcs)", desc: "Farming material ascending hingga 50 buah.", price: "Rp2.000" },
-                { name: "Bebatuan (50pcs)", desc: "Farming Bebatuan (ore) hingga 50 buah.", price: "Rp2.000" },
-                { name: "Weapon Mancing / Refine", desc: "Farming senjata pancing atau refine.", price: "Rp2.000 / refine" }
-            ]
-        };
+    <section id="kontak-form-section">
+        <h2 style="text-align: center; margin-bottom: 20px;">ISI DI BAWAH INI JIKA KAMU MAU JOKI</h2>
+        <form id="joki-form">
+            <div class="form-group"><label>Nama</label><input type="text" id="nama" placeholder="Nama Anda" required></div>
+            <div class="form-group"><label>Layanan yang dipilih</label><input type="text" id="layanan-jasa" placeholder="Contoh: Explore Natlan + Quest Luna" required></div>
+            <div class="form-group"><label>Catatan Tambahan</label><textarea id="catatan" rows="3" placeholder="Tuliskan detail pesanan..."></textarea></div>
+            <button type="submit" class="btn-order">KIRIM KE WHATSAPP SEKARANG</button>
+        </form>
+    </section>
+</div>
 
-        function toggle(id) {
-            const detailBox = document.getElementById(id);
-            const body = document.getElementById('b-' + id);
-            const isVisible = detailBox.style.display === 'block';
+<script>
+    const data = {
+        spyrall: [
+            { n: "Spyrall Abyss", d: "Penyelesaian Tergantung Spek Akun.", p: "Gratis" },
+            { n: "Stygiant Onslaught", d: "Penyelesaian Tergantung Spek Akun.", p: "Gratis" },
+            { n: "Imaginarium Theater", d: "Penyelesaian Tergantung Spek Akun.", p: "Gratis" }
+        ],
+        eksplorasi: [
+            { n: "Explore Map: Mondstad", d: "Eksplorasi Map (Full Chest/Seelie).", p: "Rp8.000" },
+            { n: "Explore Map: Dragonspine", d: "Eksplorasi Map (Full Chest/Seelie).", p: "Rp15.000" },
+            { n: "Explore Map: Liyue", d: "Eksplorasi Map (Full Chest/Seelie).", p: "Rp20.000" },
+            { n: "Explore Map: Inazuma", d: "Eksplorasi Map (Full Chest/Seelie).", p: "Rp20.000" },
+            { n: "Explore Map: Sumeru", d: "Eksplorasi Map (Full Chest/Seelie).", p: "Rp35.000" },
+            { n: "Explore Map: Fontaine", d: "Eksplorasi Map (Full Chest/Seelie).", p: "Rp25.000" },
+            { n: "Explore Map: Natlan", d: "Eksplorasi Map (Full Chest/Seelie).", p: "Rp20.000" },
+            { n: "Explore Map: Nodkrai", d: "Eksplorasi Map (Full Chest/Seelie).", p: "Rp15.000" },
+            { n: "Explore Map: Enkanomiya", d: "Eksplorasi Map (Full Chest/Seelie).", p: "Rp20.000" },
+            { n: "Explore Map: The Chasm Underground Mines", d: "Eksplorasi Map (Full Chest/Seelie).", p: "Rp25.000" },
+            { n: "Explore Map: Ancient Sacred Mountain", d: "Eksplorasi Map (Full Chest/Seelie).", p: "Rp25.000" },
+            { n: "Mencari biji kematian", d: "Mencari 76 Aranara.", p: "Rp25.000" },
+            { n: "Open Teleport", d: "Membuka semua titik Teleport di Map.", p: "Rp500" }
+        ],
+        daily: [
+            { n: "Rawat Akun (1 Bulan)", d: "Perawatan akun penuh selama 1 bulan.", p: "Rp20.000" },
+            { n: "Rawat Akun (1 Minggu)", d: "Perawatan akun penuh selama 1 minggu.", p: "Rp10.000" },
+            { n: "Rawat Akun (1 Hari)", d: "Perawatan akun penuh selama 1 hari.", p: "Rp2.000" }
+        ],
+        jokiquest: [
+            { n: "Archon Quest", d: "Penyelesaian Archon Quest.", p: "Rp10.000" },
+            { n: "World Quest", d: "Penyelesaian World Quest.", p: "Rp8.000" },
+            { n: "Event Besar", d: "Pengerjaan Event Besar / Misi Utama.", p: "Rp25.000" },
+            { n: "Event Kecil", d: "Pengerjaan Event Kecil / Misi Harian.", p: "Rp10.000" },
+            { n: "Quest Luna", d: "Pengerjaan Quest Luna.", p: "Rp20.000" }, 
+            { n: "Quest Aranyaka", d: "Per Jurnal petualangan hutan.", p: "Rp20.000" },
+            { n: "Kisah kesukuan", d: "Quest Suku Mata Air.", p: "Rp20.000" },
+            { n: "Kisah kesukuan", d: "Quest Suku Tirai daun.", p: "Rp20.000" },
+            { n: "Kisah kesukuan", d: "Quest Suku Putra-Putri Gema.", p: "Rp25.000" },
+            { n: "Kisah kesukuan", d: "Quest Suku Bunga Bersayap.", p: "Rp25.000" },
+            { n: "Kisah kesukuan", d: "Quest Suku Penguasa Angin Malam.", p: "Rp25.000" },
+            { n: "Kisah kesukuan", d: "Quest Suku Berlimpah Jaya.", p: "Rp25.000" }
+        ],
+        farming: [
+            { n: "Material Ascending (50pcs)", d: "Farming material ascending hingga 50 buah.", p: "Rp2.000" },
+            { n: "Bebatuan (50pcs)", d: "Farming Bebatuan (ore) hingga 50 buah.", p: "Rp2.000" },
+            { n: "Weapon Mancing / Refine", d: "Farming senjata pancing atau refine.", p: "Rp2.000 / refine" }
+        ]
+    };
 
-            document.querySelectorAll('.harga-layanan-detail').forEach(el => el.style.display = 'none');
-
-            if (!isVisible) {
-                detailBox.style.display = 'block';
-                body.innerHTML = servicePrices[id].map(d => 
-                    `<tr><td>${d.name}</td><td>${d.desc}</td><td>${d.price}</td></tr>`
-                ).join('');
-            }
+    function toggle(id) {
+        const detail = document.getElementById(id);
+        const body = document.getElementById('b-' + id);
+        const active = detail.style.display === 'block';
+        document.querySelectorAll('.harga-layanan-detail').forEach(el => el.style.display = 'none');
+        if (!active) {
+            detail.style.display = 'block';
+            body.innerHTML = data[id].map(i => `<tr><td>${i.n}</td><td>${i.d}</td><td>${i.p}</td></tr>`).join('');
         }
+    }
 
-        document.getElementById('joki-form').onsubmit = function(e) {
-            e.preventDefault();
-            const nama = document.getElementById('nama').value;
-            const layanan = document.getElementById('layanan-jasa').value;
-            const catatan = document.getElementById('catatan').value;
-            window.open(`https://wa.me/6282230412413?text=Halo Kiko Joki!%0A%0A*PESANAN BARU*%0A- Nama: ${nama}%0A- Layanan: ${layanan}%0A- Catatan: ${catatan}`);
-        };
-    </script>
+    document.getElementById('joki-form').onsubmit = function(e) {
+        e.preventDefault();
+        const n = document.getElementById('nama').value;
+        const l = document.getElementById('layanan-jasa').value;
+        const c = document.getElementById('catatan').value;
+        window.open(`https://wa.me/6282230412413?text=Halo Kiko Joki!%0A%0A*PESANAN BARU*%0A- Nama: ${n}%0A- Layanan: ${l}%0A- Catatan: ${c}`);
+    };
+</script>
 </body>
 </html>
