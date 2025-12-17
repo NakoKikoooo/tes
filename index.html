@@ -6,7 +6,6 @@
     <title>KIKO JOKI GENSHIN | Tingkatkan Akun Anda</title>
     <link rel="stylesheet" href="styles.css"> 
     <style>
-        /* CSS Antrean & Tabel Harga */
         .antrean-section {
             background: #fff; padding: 30px; border-radius: 15px; text-align: center;
             margin: 20px 0; border: 2px solid #7289da; box-shadow: 0 8px 20px rgba(0,0,0,0.1);
@@ -20,7 +19,6 @@
         .btn-antri:disabled { background-color: #bdc3c7 !important; cursor: not-allowed; }
         .gratis-text { color: #e74c3c; font-weight: bold; }
 
-        /* Style Tabel Harga Dinamis */
         .harga-layanan-detail {
             display: none; background: #f9f9f9; margin-top: 10px; padding: 15px;
             border-radius: 10px; border: 1px solid #ddd; overflow-x: auto;
@@ -30,10 +28,9 @@
             border: 1px solid #ddd; padding: 10px; text-align: left; font-size: 0.9rem;
         }
         .harga-table-detail th { background-color: #3498db; color: white; }
-        .service-item { cursor: pointer; transition: 0.2s; }
-        .highlighted { border: 2px solid #25d366; border-radius: 10px; }
+        .service-item { cursor: pointer; transition: 0.2s; padding: 15px; border: 1px solid transparent; }
+        .highlighted { border: 2px solid #25d366; border-radius: 10px; background-color: #f0fdf4; }
 
-        /* Style Form Pemesanan Baru */
         #kontak-form-section {
             background: #f0f2f5; padding: 30px; border-radius: 15px;
             margin-top: 40px; border: 1px solid #ddd;
@@ -59,16 +56,6 @@
         </div>
     </header>
 
-    <div class="hero-banner">
-        <div class="container">
-            <div class="hero-content">
-                <p class="tagline">Jasa Joki Terbaik dan Terpercaya</p>
-                <h1>Tingkatkan Akun Anda Sekarang!</h1>
-                <p>Cepat, Aman, dengan Harga Terjangkau.</p>
-            </div>
-        </div>
-    </div>
-
     <div class="container"> 
         <section id="antrean" class="antrean-section">
             <h2>Sistem Antrian Joki <span class="gratis-text">Gratis</span></h2>
@@ -76,7 +63,6 @@
             <div class="nomor-box" id="displayAntrean">--</div>
             <button class="btn-antri" id="btnAmbil" onclick="ambilAntrean()">AMBIL NOMOR ANTRIAN</button>
             <p id="infoAntrean" style="margin-top:15px; font-weight:bold;"></p>
-            <p id="infoWaktu" style="font-size: 0.85rem; color: #7f8c8d;"></p>
         </section>
 
         <section id="layanan-harga">
@@ -119,7 +105,7 @@
                         <img src="xiao-icon.png" class="service-icon" alt="Xiao">
                         <div>
                             <h3>Joki Daily Commision Harian</h3>
-                            <p>Penyelesaian tugas harian untuk Primogem.</p>
+                            <p>Rawat akun harian, mingguan, atau bulanan.</p>
                         </div>
                     </div>
                     <div class="harga-layanan-detail" id="harga-daily">
@@ -151,7 +137,7 @@
                         <img src="aether-icon.png" class="service-icon" alt="Aether">
                         <div>
                             <h3>Joki Farming Material</h3>
-                            <p>Farming material Ascension karakter dan senjata.</p>
+                            <p>Farming material Ascension karakter, senjata, atau artefak.</p>
                         </div>
                     </div>
                     <div class="harga-layanan-detail" id="harga-farming">
@@ -164,111 +150,65 @@
             </div>
 
             <section id="kontak-form-section">
-                <h2 style="text-align: center; color: #2c3e50;">HUBUNGI SAYA JIKA ANDA MAU ORDER JOKI</h2>
+                <h2 style="text-align: center;">HUBUNGI SAYA JIKA ANDA MAU ORDER JOKI</h2>
                 <form id="joki-form">
-                    <div class="form-group">
-                        <label>Nama Lengkap</label>
-                        <input type="text" id="nama" placeholder="Masukkan nama Anda" required>
-                    </div>
-
+                    <div class="form-group"><label>Nama Lengkap</label><input type="text" id="nama" placeholder="Nama Anda" required></div>
                     <div class="form-group">
                         <label>Metode Kontak</label>
-                        <label style="display:inline; font-weight:normal;"><input type="radio" name="metode_kontak" value="whatsapp" checked onclick="toggleKontak('wa')"> WhatsApp</label>
-                        <label style="display:inline; font-weight:normal; margin-left:15px;"><input type="radio" name="metode_kontak" value="discord" onclick="toggleKontak('dc')"> Discord</label>
+                        <input type="radio" name="metode_kontak" value="whatsapp" checked onclick="toggleKontak('wa')"> WhatsApp
+                        <input type="radio" name="metode_kontak" value="discord" onclick="toggleKontak('dc')"> Discord
                     </div>
-
-                    <div id="input-wa" class="form-group">
-                        <label>Nomor WhatsApp</label>
-                        <input type="text" id="whatsapp" placeholder="08xxxxxxxxxx">
-                    </div>
-
-                    <div id="input-discord" class="form-group" style="display:none;">
-                        <label>Username Discord</label>
-                        <input type="text" id="discord" placeholder="user#0000">
-                    </div>
-
-                    <div class="form-group">
-                        <label>Server</label>
-                        <select id="server">
-                            <option value="Asia">Asia</option>
-                            <option value="America">America</option>
-                            <option value="Europe">Europe</option>
-                            <option value="TW/HK/MO">TW/HK/MO</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label>Layanan yang dipilih</label>
-                        <input type="text" id="layanan-jasa" placeholder="Contoh: Explore Map Natlan" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label>Catatan Tambahan</label>
-                        <textarea id="catatan" rows="3" placeholder="Informasi tambahan akun..."></textarea>
-                    </div>
-
+                    <div id="input-wa" class="form-group"><input type="text" id="whatsapp" placeholder="Nomor WhatsApp"></div>
+                    <div id="input-discord" class="form-group" style="display:none;"><input type="text" id="discord" placeholder="Username Discord"></div>
+                    <div class="form-group"><label>Server</label><select id="server"><option value="Asia">Asia</option><option value="America">America</option></select></div>
+                    <div class="form-group"><label>Layanan yang dipilih</label><input type="text" id="layanan-jasa" required></div>
+                    <div class="form-group"><label>Catatan Tambahan</label><textarea id="catatan" rows="3"></textarea></div>
                     <button type="submit" class="btn-antri" style="max-width: none;">KIRIM PESANAN KE WHATSAPP</button>
                 </form>
-
-                <div style="text-align: center; margin-top: 20px;">
-                    <p>© 2025 KIKO JOKI GENSHIN. | <a href="https://discord.gg/4Cd8QhuYXH" target="_blank" style="color: #7289da; font-weight: bold; text-decoration: none;">Link Discord</a></p>
-                </div>
             </section>
         </section> 
     </div>
 
-    <footer>
-        <p>Terima kasih telah menggunakan jasa kami. Kami akan segera memproses pesanan Anda!</p>
-    </footer>
-
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
-    <script src="script.js"></script>
 
     <script>
-        // Logika Antrean Firebase (Sesuai script sebelumnya)
-        const firebaseConfig = { databaseURL: "https://kiko-joki-default-rtdb.asia-southeast1.firebasedatabase.app" };
-        firebase.initializeApp(firebaseConfig);
-        const db = firebase.database();
-        const display = document.getElementById('displayAntrean');
-        const btn = document.getElementById('btnAmbil');
-        let myNumber = localStorage.getItem('kikoMyNumber');
+        // Logika Klik Harga Dinamis
+        const servicePrices = {
+            spyrall: [{ name: "Spyrall Abyss", desc: "Penyelesaian Tergantung Spek Akun.", price: "Gratis" }],
+            eksplorasi: [{ name: "Natlan", desc: "Full Chest/Seelie", price: "Rp20.000" }, { name: "Open Teleport", desc: "Seluruh Map", price: "Rp500" }],
+            daily: [{ name: "Rawat Akun (1 Bulan)", desc: "Perawatan akun penuh selama 1 bulan.", price: "Rp20.000" }],
+            jokiquest: [{ name: "Quest Luna", desc: "Pengerjaan Quest Luna.", price: "Rp20.000" }, { name: "Kisah Kesukuan", desc: "Quest Suku Tirai Daun.", price: "Rp20.000" }],
+            farming: [{ name: "Material Ascending (50pcs)", desc: "Farming material ascending hingga 50 buah.", price: "Rp2.000" }]
+        };
 
-        db.ref('lastNumber').on('value', (snap) => { if (!myNumber) display.innerText = snap.val() || 0; });
-        if (myNumber) {
-            display.innerText = myNumber;
-            btn.innerText = "BERHASIL DI AMBIL";
-            btn.disabled = true;
-        }
+        document.querySelectorAll('.service-item').forEach(item => {
+            item.addEventListener('click', function() {
+                const sId = this.getAttribute('data-service-id');
+                const detailBox = document.getElementById('harga-' + sId);
+                const tableBody = detailBox.querySelector('.harga-body-detail');
+                const isVisible = detailBox.style.display === 'block';
+                
+                document.querySelectorAll('.harga-layanan-detail').forEach(el => el.style.display = 'none');
+                document.querySelectorAll('.service-item').forEach(el => el.classList.remove('highlighted'));
 
-        function ambilAntrean() {
-            if (localStorage.getItem('kikoMyNumber')) return;
-            btn.disabled = true;
-            db.ref('lastNumber').transaction((c) => (c || 0) + 1, (err, comm, snap) => {
-                if (comm) {
-                    localStorage.setItem('kikoMyNumber', snap.val());
-                    location.reload();
+                if (!isVisible) {
+                    detailBox.style.display = 'block';
+                    this.classList.add('highlighted');
+                    tableBody.innerHTML = servicePrices[sId].map(d => `<tr><td>${d.name}</td><td>${d.desc}</td><td>${d.price}</td></tr>`).join('');
                 }
             });
-        }
+        });
 
+        // Logika Antrean & Form (WhatsApp: 082230412413)
         function toggleKontak(type) {
             document.getElementById('input-wa').style.display = type === 'wa' ? 'block' : 'none';
             document.getElementById('input-discord').style.display = type === 'dc' ? 'block' : 'none';
         }
 
-        // Handle Submit Form Pemesanan ke WhatsApp
         document.getElementById('joki-form').addEventListener('submit', function(e) {
             e.preventDefault();
-            const nama = document.getElementById('nama').value;
-            const metode = document.querySelector('input[name="metode_kontak"]:checked').value;
-            const kontak = metode === 'whatsapp' ? document.getElementById('whatsapp').value : document.getElementById('discord').value;
-            const server = document.getElementById('server').value;
-            const layanan = document.getElementById('layanan-jasa').value;
-            const catatan = document.getElementById('catatan').value;
-            const antrean = localStorage.getItem('kikoMyNumber') || "Belum Ambil";
-
-            const pesan = `Halo Kiko Joki!%0A%0A*PESANAN JOKI*%0A- Nama: ${nama}%0A- Antrean: ${antrean}%0A- Kontak: ${kontak} (${metode})%0A- Server: ${server}%0A- Layanan: ${layanan}%0A- Catatan: ${catatan}`;
+            const pesan = `Halo Kiko Joki!%0A%0A*PESANAN JOKI*%0A- Nama: ${document.getElementById('nama').value}%0A- Layanan: ${document.getElementById('layanan-jasa').value}`;
             window.open(`https://wa.me/6282230412413?text=${pesan}`, '_blank');
         });
     </script>
