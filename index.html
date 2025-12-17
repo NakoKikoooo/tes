@@ -2,83 +2,111 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>KIKO JOKI GENSHIN | Layanan Terlengkap & Terpercaya</title>
     <link rel="stylesheet" href="styles.css"> 
     <style>
-        /* --- TAMPILAN VISUAL FINAL --- */
+        /* --- PERBAIKAN STRUKTUR AGAR RAPI DI HP --- */
+        * { box-sizing: border-box; } /* Kunci agar elemen tidak melebihi layar */
+        
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: sans-serif;
+            background-color: #f9f9f9;
+            overflow-x: hidden; /* Mencegah layar goyang ke samping */
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1100px;
+            margin: auto;
+            padding: 0 15px; /* Memberi ruang di pinggir layar HP */
+        }
+
+        /* --- HERO BANNER --- */
         .hero-banner {
             background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('header-bg.jpg');
             background-size: cover;
             background-position: center;
-            background-attachment: fixed;
-            padding: 120px 0;
+            padding: 80px 15px;
             color: white;
             text-align: center;
             border-bottom: 5px solid #3498db;
         }
-        .hero-banner h1 { font-size: 3.5rem; margin-bottom: 10px; text-shadow: 2px 2px 10px rgba(0,0,0,0.5); }
-        .hero-banner p { font-size: 1.2rem; opacity: 0.9; letter-spacing: 1px; }
+        .hero-banner h1 { font-size: 2.5rem; margin-bottom: 10px; }
+        .hero-banner p { font-size: 1.1rem; opacity: 0.9; }
 
-        /* TABEL HARGA - DITAMBAHKAN SCROLL OTOMATIS UNTUK HP TANPA UBAH TEKS */
+        /* --- TABEL HARGA (KUNCI AGAR TIDAK ANEH) --- */
         .harga-layanan-detail {
-            display: none; background: #ffffff; margin: 15px 0; padding: 20px;
-            border-radius: 12px; border: 1px solid #e0e0e0; box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-            overflow-x: auto; /* Agar tabel bisa digeser di HP */
+            display: none; 
+            background: #ffffff; 
+            margin: 15px 0; 
+            padding: 10px;
+            border-radius: 12px; 
+            border: 1px solid #e0e0e0; 
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            
+            /* Agar tabel bisa digeser ke samping di HP tanpa merusak layout */
+            overflow-x: auto; 
             -webkit-overflow-scrolling: touch;
         }
-        .harga-table-detail { width: 100%; border-collapse: collapse; min-width: 500px; }
+
+        .harga-table-detail { 
+            width: 100%; 
+            border-collapse: collapse; 
+            min-width: 500px; /* Memastikan teks tabel tidak tumpang tindih */
+        }
+
         .harga-table-detail th, .harga-table-detail td {
-            border-bottom: 1px solid #eee; padding: 12px; text-align: left; font-size: 0.95rem;
+            border-bottom: 1px solid #eee; 
+            padding: 12px; 
+            text-align: left; 
+            font-size: 0.9rem;
         }
         .harga-table-detail th { background-color: #3498db; color: white; }
         
-        /* ITEM LAYANAN */
+        /* --- ITEM LAYANAN --- */
         .service-item { 
-            cursor: pointer; transition: all 0.3s ease; padding: 15px; 
-            border-radius: 12px; background: #fff; margin-bottom: 10px; 
-            border: 1px solid transparent; display: flex; align-items: center;
+            cursor: pointer; 
+            padding: 15px; 
+            border-radius: 12px; 
+            background: #fff; 
+            margin-bottom: 10px; 
+            border: 1px solid #ddd; 
+            display: flex; 
+            align-items: center;
         }
-        .service-icon { width: 60px; height: 60px; margin-right: 20px; border-radius: 50%; object-fit: cover; }
-        .service-item:hover { transform: translateY(-3px); box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+        .service-icon { width: 50px; height: 50px; margin-right: 15px; border-radius: 50%; flex-shrink: 0; }
         .highlighted { border: 2px solid #25d366 !important; background-color: #f0fdf4 !important; }
 
-        /* FORM PEMESANAN */
+        /* --- FORM PEMESANAN --- */
         #kontak-form-section {
-            background: #fff; padding: 40px; border-radius: 20px;
-            margin: 50px 0; border: 1px solid #ddd; box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            background: #fff; padding: 30px 20px; border-radius: 20px;
+            margin: 40px 0; border: 1px solid #ddd;
         }
-        .form-group { margin-bottom: 25px; text-align: left; }
-        .form-group label { display: block; font-weight: bold; margin-bottom: 10px; color: #2c3e50; }
+        .form-group { margin-bottom: 20px; }
+        .form-group label { display: block; font-weight: bold; margin-bottom: 8px; }
         .form-group input, .form-group textarea {
-            width: 100%; padding: 14px; border: 2px solid #eee; border-radius: 10px; box-sizing: border-box; font-family: inherit; font-size: 1rem;
+            width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 10px; font-size: 1rem;
         }
         .btn-order {
-            background: linear-gradient(135deg, #25d366, #128c7e); color: white; border: none; padding: 20px;
-            font-size: 1.2rem; border-radius: 12px; cursor: pointer; font-weight: bold; width: 100%;
-            transition: 0.3s; box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3);
+            background: linear-gradient(135deg, #25d366, #128c7e); color: white; border: none; padding: 18px;
+            font-size: 1.1rem; border-radius: 12px; cursor: pointer; font-weight: bold; width: 100%;
         }
-        .btn-order:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(37, 211, 102, 0.4); }
 
-        /* Perbaikan ukuran teks di HP */
-        @media (max-width: 600px) {
-            .hero-banner h1 { font-size: 2rem; }
-            .hero-banner p { font-size: 1rem; }
-            #kontak-form-section { padding: 20px; }
+        /* Responsive Desktop */
+        @media (min-width: 768px) {
+            .hero-banner h1 { font-size: 3.5rem; }
+            .hero-banner { padding: 120px 0; }
         }
     </style>
 </head>
 <body>
     
     <header style="background:#fff; padding:15px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
-        <div class="container" style="max-width: 1100px; margin: auto; display: flex; justify-content: space-between; align-items: center;">
+        <div class="container" style="display: flex; justify-content: space-between; align-items: center;">
             <div class="brand-name" style="font-weight: bold; font-size: 1.5rem; color: #3498db;">KIKO JOKI GENSHIN</div>
-            <nav>
-                <ul style="list-style: none; display: flex; gap: 20px; margin: 0; padding: 0;">
-                    <li><a href="#layanan-harga" style="text-decoration: none; color: #333; font-weight: bold;">Layanan & Harga</a></li> 
-                    <li><a href="#kontak-form-section" style="text-decoration: none; color: #333; font-weight: bold;">Order Sekarang</a></li>
-                </ul>
-            </nav>
         </div>
     </header>
 
@@ -89,7 +117,7 @@
         </div>
     </div>
 
-    <div class="container" style="max-width: 1100px; margin: auto; padding: 0 15px;"> 
+    <div class="container"> 
         <section id="layanan-harga">
             <h2 style="margin: 40px 0 20px; text-align: center;">Daftar Layanan Joki</h2>
             <div class="service-list">
@@ -213,7 +241,7 @@
                 { name: "Explore Map: Natlan", desc: "Eksplorasi Map (Full Chest/Seelie).", price: "Rp20.000" },
                 { name: "Explore Map: Nodkrai", desc: "Eksplorasi Map (Full Chest/Seelie).", price: "Rp15.000" },
                 { name: "Explore Map: Enkanomiya", desc: "Eksplorasi Map (Full Chest/Seelie).", price: "Rp20.000" },
-                { name: "Explore Map: The Chasm", desc: "Underground Mines (Full Chest/Seelie).", price: "Rp25.000" },
+                { name: "Explore Map: The Chasm Underground Mines", desc: "Eksplorasi Map (Full Chest/Seelie).", price: "Rp25.000" },
                 { name: "Explore Map: Ancient Sacred Mountain", desc: "Eksplorasi Map (Full Chest/Seelie).", price: "Rp25.000" },
                 { name: "Mencari biji kematian", desc: "Mencari 76 Aranara.", price: "Rp25.000" },
                 { name: "Open Teleport", desc: "Membuka semua titik Teleport di Map.", price: "Rp500" }
