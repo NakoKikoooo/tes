@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KIKO JOKI GENSHIN | Terpercaya & Aman</title>
+    <title>KIKO JOKI GENSHIN | Tingkatkan Akun Anda</title>
     <link rel="stylesheet" href="styles.css"> 
     <style>
-        /* CSS Tambahan untuk Sistem Antrean Anti-Spam */
+        /* Tambahan CSS agar fitur Antrean menyatu dengan desain Anda */
         .antrean-section {
             background: #fff;
             padding: 30px;
@@ -17,11 +17,11 @@
             box-shadow: 0 8px 20px rgba(0,0,0,0.1);
         }
         .nomor-box {
-            font-size: 5rem;
+            font-size: 4.5rem;
             font-weight: bold;
             color: #e74c3c;
-            margin: 10px 0;
-            line-height: 1.2;
+            margin: 15px 0;
+            line-height: 1;
         }
         .btn-antri {
             background-color: #25d366;
@@ -33,32 +33,27 @@
             cursor: pointer;
             font-weight: bold;
             transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
             width: 100%;
-            max-width: 350px;
+            max-width: 320px;
         }
         .btn-antri:disabled {
             background-color: #bdc3c7 !important;
-            cursor: not-allowed;
             transform: none !important;
+            cursor: not-allowed;
+            box-shadow: none;
         }
         .btn-antri:hover:not(:disabled) {
             background-color: #1ebd5b;
-            transform: scale(1.02);
-        }
-        .gratis-text {
-            color: #e74c3c;
-            font-weight: bold;
-        }
-        #infoAntrean {
-            margin-top: 15px;
-            font-weight: bold;
-            color: #2c3e50;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.2);
         }
         .note-spam {
             font-size: 0.8rem;
             color: #7f8c8d;
             margin-top: 10px;
         }
+        .gratis-text { color: #e74c3c; font-weight: bold; }
     </style>
 </head>
 <body>
@@ -69,7 +64,7 @@
             <nav>
                 <ul>
                     <li><a href="#layanan-harga">Layanan & Harga</a></li> 
-                    <li><a href="#antrean">Cek Antrean</a></li> 
+                    <li><a href="#antrean">Cek Antrian</a></li>
                 </ul>
             </nav>
         </div>
@@ -88,21 +83,21 @@
     <div class="container"> 
         
         <section id="antrean" class="antrean-section">
-            <h2>Sistem Antrean Joki <span class="gratis-text">Gratis</span></h2>
-            <p id="statusLabel">Nomor Antrean Terakhir Saat Ini:</p>
+            <h2>Sistem Antrian Joki <span class="gratis-text">Gratis</span></h2>
+            <p id="labelStatus">Nomor Antrian Terakhir Saat Ini:</p>
             <div class="nomor-box" id="displayAntrean">--</div>
             
             <button class="btn-antri" id="btnAmbil" onclick="ambilAntrean()">AMBIL NOMOR ANTRIAN</button>
             
-            <p id="infoAntrean"></p>
-            <p id="infoWaktu" style="font-size: 0.8rem; color: #666;"></p>
+            <p id="infoAntrean" style="margin-top:15px; font-weight:bold; color:#2c3e50;"></p>
+            <p id="infoWaktu" style="font-size: 0.85rem; color: #7f8c8d; margin-top: 5px;"></p>
             <p class="note-spam">*Satu perangkat hanya diizinkan mengambil 1 nomor antrean.</p>
         </section>
 
         <section id="layanan-harga">
             <h2>Layanan Kami (Klik Ikon untuk Lihat Harga)</h2>
+            
             <div class="service-list">
-                
                 <div class="service-item-wrapper" id="wrapper-spyrall">
                     <div class="service-item" data-service-id="spyrall">
                         <img src="amber-icon.png" alt="Ikon Amber" class="service-icon">
@@ -112,117 +107,87 @@
                         </div>
                     </div>
                 </div>
-
+                
                 <div class="service-item-wrapper" id="wrapper-eksplorasi">
                     <div class="service-item" data-service-id="eksplorasi">
                         <img src="ganyu-icon.png" alt="Ikon Ganyu" class="service-icon">
                         <div>
                             <h3>Joki Eksplorasi Map</h3>
-                            <p>Ambil semua Chest & Seelie dan selesaikan puzzle.</p>
+                            <p>Ambil semua Chest & Seelie di area baru dan selesaikan puzzle.</p>
                         </div>
                     </div>
                 </div>
-
+                
                 <div class="service-item-wrapper" id="wrapper-daily">
                     <div class="service-item" data-service-id="daily">
                         <img src="xiao-icon.png" alt="Ikon Xiao" class="service-icon">
                         <div>
-                            <h3>Joki Daily Commission Harian</h3>
-                            <p>Dapatkan Primogem harian tanpa repot.</p>
+                            <h3>Joki Daily Commision Harian</h3>
+                            <p>Penyelesaian tugas Komisi Harian untuk mendapatkan Primogem.</p>
                         </div>
                     </div>
                 </div>
 
+                <div class="service-item-wrapper" id="wrapper-jokiquest">
+                    <div class="service-item" data-service-id="jokiquest">
+                        <img src="hutao-icon.png" alt="Ikon Hu Tao" class="service-icon">
+                        <div>
+                            <h3>Joki Quest (Story/Event)</h3>
+                            <p>Pengerjaan Archon Quest, World Quest, dan Event terbatas.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="service-item-wrapper" id="wrapper-farming">
+                    <div class="service-item" data-service-id="farming">
+                        <img src="aether-icon.png" alt="Ikon Aether" class="service-icon">
+                        <div>
+                            <h3>Joki Farming Material</h3>
+                            <p>Farming material Ascension karakter, senjata, atau artefak.</p>
+                        </div>
+                    </div>
+                </div>
             </div>
             
-            <p style="text-align: center; margin-top: 20px; color: #e74c3c; font-weight: 600;">*Harga dapat disesuaikan tergantung progress akun Anda.</p>
+            <p style="text-align: center; margin-top: 20px; color: #e74c3c; font-weight: 600;">*Harga dapat disesuaikan tergantung kompleksitas dan *progress* akun Anda.</p>
 
-            <section id="kontak" style="text-align: center; margin-top: 40px;">
-                <h2>Hubungi saya untuk order</h2>
+            <section id="kontak">
+                <h2>Anda bisa menghubungi saya untuk order jokian</h2>
                 <p>© 2025 KIKO JOKI GENSHIN. Layanan Joki Terpercaya.</p>
-                <div style="margin-top: 20px;">
-                    <button onclick="orderWA()" style="background: #25d366; color: white; border: none; padding: 12px 25px; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 1rem;">Order via WhatsApp</button>
-                </div>
+                <p>
+                    Hubungi saya: 
+                    <button onclick="orderWA()" style="background: #25d366; color: white; border: none; padding: 10px 15px; border-radius: 5px; cursor: pointer; font-weight: bold; font-size: 1rem;">WhatsApp</button> | 
+                    <a href="https://discord.gg/4Cd8QhuYXH" target="_blank" style="color: #7289da; font-weight: bold; text-decoration: none;">Discord</a>
+                </p>
             </section>
         </section> 
     </div>
 
     <footer>
-        <p>Terima kasih telah menggunakan jasa kami!</p>
+        <p>Terima kasih telah menggunakan jasa kami. Kami akan segera memproses pesanan Anda!</p>
     </footer>
 
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
 
     <script>
-        // 1. Konfigurasi Database
+        // 1. Konfigurasi Database (Sudah terhubung ke server)
         const firebaseConfig = {
             databaseURL: "https://kiko-joki-default-rtdb.asia-southeast1.firebasedatabase.app"
         };
         firebase.initializeApp(firebaseConfig);
         const db = firebase.database();
 
-        // 2. Variabel DOM
+        // 2. Variabel Elemen
         const display = document.getElementById('displayAntrean');
         const btn = document.getElementById('btnAmbil');
         const info = document.getElementById('infoAntrean');
-        const statusLabel = document.getElementById('statusLabel');
+        const infoWaktu = document.getElementById('infoWaktu');
+        const labelStatus = document.getElementById('labelStatus');
 
-        // 3. Cek Status Pengguna (Anti-Spam)
+        // Cek apakah user sudah punya nomor di perangkat ini
         let myNumber = localStorage.getItem('kikoMyNumber');
 
-        // Pantau antrean global
+        // Selalu pantau nomor terakhir dari server secara global
         db.ref('lastNumber').on('value', (snapshot) => {
-            const serverNumber = snapshot.val() || 0;
-            if (!myNumber) {
-                display.innerText = serverNumber;
-            }
-        });
-
-        // Jika sudah punya nomor, kunci tombol selamanya
-        if (myNumber) {
-            display.innerText = myNumber;
-            statusLabel.innerText = "Nomor Antrean Anda:";
-            info.innerText = "Nomor Anda telah terdaftar. Silakan hubungi WA.";
-            btn.innerText = "NOMOR SUDAH DIAMBIL";
-            btn.disabled = true;
-        }
-
-        // 4. Fungsi Ambil Antrean Berurutan
-        function ambilAntrean() {
-            if (localStorage.getItem('kikoMyNumber')) {
-                alert("Anda sudah memiliki nomor antrean!");
-                return;
-            }
-
-            btn.disabled = true;
-            btn.innerText = "Memproses...";
-
-            db.ref('lastNumber').transaction((currentValue) => {
-                return (currentValue || 0) + 1;
-            }, (error, committed, snapshot) => {
-                if (committed) {
-                    const newNumber = snapshot.val();
-                    localStorage.setItem('kikoMyNumber', newNumber);
-                    
-                    display.innerText = newNumber;
-                    alert("Berhasil! Nomor antrean Anda adalah: " + newNumber);
-                    location.reload(); // Kunci status secara permanen
-                } else {
-                    btn.disabled = false;
-                    btn.innerText = "AMBIL NOMOR ANTRIAN";
-                }
-            });
-        }
-
-        // 5. Fungsi WhatsApp dengan data Antrean
-        function orderWA() {
-            const noWA = "6282230412413";
-            const antrean = localStorage.getItem('kikoMyNumber') || "Belum Ambil Nomor";
-            const pesan = `Halo Kiko Joki,%0A%0ASaya mau order joki.%0ANomor Antrean: *${antrean}*%0A%0A(Mohon sertakan SS nomor antrean dari web)`;
-            window.open(`https://wa.me/${noWA}?text=${pesan}`, '_blank');
-        }
-    </script>
-    <script src="script.js"></script>
-</body>
-</html>
+            const serverNumber =
